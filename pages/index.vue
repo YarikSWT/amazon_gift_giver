@@ -1,7 +1,7 @@
 <template>
-  <div :key="key" class="main">
+  <div :key="key" class="index" :class="{ faces: step == 0 }">
     <el-steps
-      v-if="$mq !== 'sm'"
+      v-if="$mq !== 'sm' && step != 0"
       :space="200"
       :active="step"
       finish-status="success"
@@ -65,10 +65,14 @@ export default {
 </script>
 
 <style>
-.main {
+.index {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.faces {
+  background-image: url('../assets/img/faces.jpg');
 }
 
 .container {
@@ -100,5 +104,9 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+h1 {
+  margin-bottom: 30px;
 }
 </style>

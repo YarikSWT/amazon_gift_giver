@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container">
+    <h1>Fill the form</h1>
     <el-form ref="form" :model="form" label-width="120px" label-position="top">
       <el-form-item label="Fullname">
         <el-input v-model="form.name"></el-input>

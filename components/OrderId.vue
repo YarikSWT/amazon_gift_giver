@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="">
+    <h1>Enter your OrderId</h1>
     <el-form ref="form" :model="form" label-width="120px" label-position="top">
       <el-form-item label="OrderId">
         <el-input v-model="form.orderId"></el-input>
