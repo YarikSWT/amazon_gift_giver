@@ -106,6 +106,17 @@ export default {
         },
       },
     ],
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: 'XXXXXX',
+        webvisor: true,
+        // clickmap:true,
+        // useCDN:false,
+        // trackLinks:true,
+        // accurateTrackBounce:true,
+      },
+    ],
   ],
   /*
    ** Axios module configuration
