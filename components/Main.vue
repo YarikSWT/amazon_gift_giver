@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-row :gutter="100" style="width: 100%;">
+    <el-row :gutter="$mq !== 'sm' ? 100 : 0" style="width: 100%;">
       <el-col :span="$mq !== 'sm' ? 12 : 24">
         <div class="main__text">
           <h2>Thank you for supporting us!</h2>
@@ -84,7 +84,7 @@ export default {
 }
 
 .form {
-  margin-left: 5%;
+  /* margin-left: 5%; */
   background-color: rgba(15, 15, 15, 0.45);
   align-items: center;
   text-align: center;
@@ -108,8 +108,19 @@ export default {
   border-bottom-style: solid;
   border-left-style: solid;
   width: 33vw;
-  max-width: 622px;
+  max-width: 400px;
   padding-right: 40px;
   color: white;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .main__text {
+    margin: 60px 0;
+  }
+
+  .form {
+    margin-right: 0;
+    width: 100%;
+  }
 }
 </style>
