@@ -1,6 +1,7 @@
 <template>
   <div :key="key" class="main">
     <el-steps
+      v-if="$mq !== 'sm'"
       :space="200"
       :active="step"
       finish-status="success"
