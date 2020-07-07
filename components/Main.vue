@@ -28,16 +28,17 @@
           <h4>Fill out the form</h4>
           <h5 style="font-weight: 200;">to receive a FREE product</h5>
           <el-form
-            ref="form"
+            ref="ruleForm"
             :model="form"
             label-width="120px"
             label-position="top"
+            :rules="rules"
             style="width: 100%; margin-top: 30px;"
           >
-            <el-form-item>
+            <el-form-item prop="name">
               <el-input v-model="form.name" placeholder="Fullname"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="email">
               <el-input
                 v-model="form.email"
                 placeholder="Email Address"
@@ -63,12 +64,35 @@ export default {
         name: '',
         email: '',
       },
+      rules: {
+        name: [
+          {
+            required: true,
+            message: 'Please input your Fullname!',
+            trigger: 'change',
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: 'Please input your email!',
+            trigger: 'change',
+          },
+        ],
+      },
     }
   },
   methods: {
     onSubmit() {
-      console.log('submit!')
-      this.$emit('nextStep', this.form)
+      this.$refs.ruleForm.validate((valid) => {
+        if (valid) {
+          this.$emit('nextStep', this.form)
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+      //   console.log('submit!')
     },
   },
 }
