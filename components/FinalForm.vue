@@ -42,6 +42,7 @@
 export default {
   props: {
     orderId: {},
+    firstForm: {},
   },
   data() {
     return {
@@ -90,6 +91,10 @@ export default {
         ],
       },
     }
+  },
+  mounted() {
+    this.form.name = this.firstForm.name
+    this.form.email = this.firstForm.email
   },
   methods: {
     onSubmit() {

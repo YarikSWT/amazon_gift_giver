@@ -14,10 +14,11 @@
     </el-steps>
     <div class="container">
       <Main v-if="step === 0" @nextStep="main"></Main>
-      <OrderId v-else-if="step === 1" @nextStep="step += 1"></OrderId>
-      <Gifts v-else-if="step === 2" @nextStep="step += 1"></Gifts>
+      <OrderId v-else-if="step === 1" @nextStep="orderid"></OrderId>
+      <Gifts v-else-if="step === 2" @nextStep="gifts"></Gifts>
       <FinalForm
         v-else-if="step === 3"
+        :first-form="firstForm"
         :order-id="orderId"
         @nextStep="finish"
       ></FinalForm>
