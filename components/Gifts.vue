@@ -29,7 +29,6 @@
       :title="gifts[currentGift].title"
       :visible.sync="dialogVisible"
       :width="$mq !== 'sm' ? '50%' : '99%'"
-      :before-close="handleClose"
     >
       <div class="gift-card">
         <el-row :gutter="80">

@@ -24,7 +24,11 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="Phone for mail service" prop="phone">
-        <el-input v-model="form.phone" placeholder="+08382229999"></el-input>
+        <el-input
+          v-model="form.phone"
+          placeholder="+08382229999"
+          @input="checkProgress"
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <el-button
@@ -97,6 +101,13 @@ export default {
     this.form.email = this.firstForm.email
   },
   methods: {
+    checkProgress() {
+      console.log('kek')
+      if (this.form.phone !== '') {
+        this.$emit('endProgress')
+        console.log('kok')
+      }
+    },
     onSubmit() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
@@ -114,10 +125,10 @@ export default {
           this.$alert('Thank you, NAME!', 'Congratulations!', {
             confirmButtonText: 'OK',
             callback: (action) => {
-              this.$message({
-                type: 'info',
-                message: `action: ${action}`,
-              })
+              //   this.$message({
+              //     type: 'info',
+              //     message: `action: ${action}`,
+              //   })
             },
           })
         } else {

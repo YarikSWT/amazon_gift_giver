@@ -6,6 +6,7 @@
         :text-inside="true"
         :stroke-width="26"
         :percentage="progress"
+        :status="progress === 100 ? 'success' : 'default'"
       ></el-progress>
     </header>
     <div class="container">
@@ -17,6 +18,7 @@
         :first-form="firstForm"
         :order-id="orderId"
         @nextStep="finish"
+        @endProgress="endProgress"
       ></FinalForm>
     </div>
   </div>
@@ -34,6 +36,7 @@ export default {
     return {
       step: 0,
       key: 0,
+      progress: 0,
       firstForm: {},
       orderId: '',
     }
@@ -59,6 +62,10 @@ export default {
       this.key += 1
       this.firstForm = {}
       this.orderId = ''
+    },
+    endProgress() {
+      console.log('the end')
+      this.progress = 100
     },
   },
 }
@@ -119,6 +126,9 @@ h1 {
   h1 {
     margin-top: 40px;
     font-size: 1.5rem;
+  }
+  .el-message-box {
+    width: 300px;
   }
 }
 </style>

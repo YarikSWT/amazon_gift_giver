@@ -2,7 +2,7 @@
   <section class="container">
     <div class="main">
       <el-row
-        :type="$mq !== 'sm' ? 'flex' : 0"
+        :type="$mq !== 'sm' ? 'flex' : ''"
         justify="center"
         :gutter="$mq !== 'sm' ? 100 : 0"
         style="width: 100%;"
