@@ -1,7 +1,20 @@
 <template>
   <div class="main">
-    <el-row :gutter="$mq !== 'sm' ? 100 : 0" style="width: 100%;">
-      <el-col :span="$mq !== 'sm' ? 12 : 24">
+    <el-row
+      :type="$mq !== 'sm' ? 'flex' : 0"
+      justify="center"
+      :gutter="$mq !== 'sm' ? 100 : 0"
+      style="width: 100%;"
+    >
+      <el-col
+        :span="$mq !== 'sm' ? 12 : 24"
+        style="
+          justify-content: center;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        "
+      >
         <div class="main__text">
           <h2>Thank you for supporting us!</h2>
           <h3>
