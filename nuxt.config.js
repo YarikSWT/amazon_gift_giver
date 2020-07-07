@@ -94,6 +94,18 @@ export default {
         },
       },
     ],
+    [
+      'nuxt-mq',
+      {
+        // Default breakpoint for SSR
+        defaultBreakpoint: 'default',
+        breakpoints: {
+          sm: 450,
+          md: 1250,
+          lg: Infinity,
+        },
+      },
+    ],
   ],
   /*
    ** Axios module configuration

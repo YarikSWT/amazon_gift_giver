@@ -4,7 +4,7 @@
       :space="200"
       :active="step"
       finish-status="success"
-      style="width: 400px;"
+      style="width: 400px; margin-right: -100px;"
     >
       <el-step title="Name"></el-step>
       <el-step title="OrderId"></el-step>
