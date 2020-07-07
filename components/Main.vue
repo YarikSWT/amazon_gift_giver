@@ -1,59 +1,62 @@
 <template>
-  <div class="main">
-    <el-row
-      :type="$mq !== 'sm' ? 'flex' : 0"
-      justify="center"
-      :gutter="$mq !== 'sm' ? 100 : 0"
-      style="width: 100%;"
-    >
-      <el-col
-        :span="$mq !== 'sm' ? 12 : 24"
-        style="
-          justify-content: center;
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-        "
+  <section class="container">
+    <div class="main">
+      <el-row
+        :type="$mq !== 'sm' ? 'flex' : 0"
+        justify="center"
+        :gutter="$mq !== 'sm' ? 100 : 0"
+        style="width: 100%;"
       >
-        <div class="main__text">
-          <h2>Thank you for supporting us!</h2>
-          <h3>
-            Share your honest experience about our Product and get a FREE Gift.
-            NO credit card required, NO shipping charges, NO hidden fees.
-          </h3>
-        </div>
-      </el-col>
-      <el-col :span="$mq !== 'sm' ? 12 : 24">
-        <div class="form">
-          <h4>Fill out the form</h4>
-          <h5 style="font-weight: 200;">to receive a FREE product</h5>
-          <el-form
-            ref="ruleForm"
-            :model="form"
-            label-width="120px"
-            label-position="top"
-            :rules="rules"
-            style="width: 100%; margin-top: 30px;"
-          >
-            <el-form-item prop="name">
-              <el-input v-model="form.name" placeholder="Fullname"></el-input>
-            </el-form-item>
-            <el-form-item prop="email">
-              <el-input
-                v-model="form.email"
-                placeholder="Email Address"
-              ></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="success" style="width: 100%;" @click="onSubmit"
-                >CLAIM A GIFT</el-button
-              >
-            </el-form-item>
-          </el-form>
-        </div>
-      </el-col>
-    </el-row>
-  </div>
+        <el-col
+          :span="$mq !== 'sm' ? 12 : 24"
+          style="
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+          "
+        >
+          <div class="main__text">
+            <h2>Thank you for supporting us!</h2>
+            <h3>
+              Share your honest experience about our Product and get a FREE
+              Gift. NO credit card required, NO shipping charges, NO hidden
+              fees.
+            </h3>
+          </div>
+        </el-col>
+        <el-col :span="$mq !== 'sm' ? 12 : 24">
+          <div class="form">
+            <h4>Fill out the form</h4>
+            <h5 style="font-weight: 200;">to receive a FREE product</h5>
+            <el-form
+              ref="ruleForm"
+              :model="form"
+              label-width="120px"
+              label-position="top"
+              :rules="rules"
+              style="width: 100%; margin-top: 30px;"
+            >
+              <el-form-item prop="name">
+                <el-input v-model="form.name" placeholder="Fullname"></el-input>
+              </el-form-item>
+              <el-form-item prop="email">
+                <el-input
+                  v-model="form.email"
+                  placeholder="Email Address"
+                ></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="success" style="width: 100%;" @click="onSubmit"
+                  >CLAIM A GIFT</el-button
+                >
+              </el-form-item>
+            </el-form>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </section>
 </template>
 
 <script>

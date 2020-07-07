@@ -1,5 +1,5 @@
 <template>
-  <div class="finalForm">
+  <div class="finalForm" :v-if="$mq">
     <h1>Fill the form</h1>
     <el-form
       ref="ruleForm"
@@ -136,6 +136,11 @@ export default {
   padding: 0 !important;
 }
 .finalForm {
-  width: 400px;
+  width: 600px;
+}
+
+.finalForm.sm {
+  width: 100%;
+  padding: 0 25px;
 }
 </style>

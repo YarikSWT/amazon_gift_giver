@@ -1,17 +1,13 @@
 <template>
   <div :key="key" class="index" :class="{ faces: step == 0 }">
-    <el-steps
-      v-if="$mq !== 'sm' && step != 0"
-      :space="200"
-      :active="step"
-      finish-status="success"
-      style="width: 400px; margin-right: -100px;"
-    >
-      <el-step title="Name"></el-step>
-      <el-step title="OrderId"></el-step>
-      <el-step title="Gift"></el-step>
-      <el-step title="Conact Info"></el-step>
-    </el-steps>
+    <header class="">
+      <el-progress
+        v-if="step != 0"
+        :text-inside="true"
+        :stroke-width="26"
+        :percentage="progress"
+      ></el-progress>
+    </header>
     <div class="container">
       <Main v-if="step === 0" @nextStep="main"></Main>
       <OrderId v-else-if="step === 1" @nextStep="orderid"></OrderId>
@@ -45,14 +41,17 @@ export default {
   methods: {
     main(form) {
       this.step += 1
+      this.progress = 33
       this.firstForm = form
     },
     orderid(orderid) {
       this.step += 1
+      this.progress = 75
       this.orderId = orderid
     },
     gifts(giftId) {
       this.step += 1
+      this.progress = 90
       this.giftId = giftId
     },
     finish() {
@@ -66,6 +65,11 @@ export default {
 </script>
 
 <style>
+header {
+  width: 60%;
+  margin: 2% 0;
+}
+
 .index {
   display: flex;
   flex-direction: column;
@@ -109,5 +113,12 @@ export default {
 
 h1 {
   margin-bottom: 30px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  h1 {
+    margin-top: 40px;
+    font-size: 1.5rem;
+  }
 }
 </style>
