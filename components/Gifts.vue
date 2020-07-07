@@ -157,6 +157,7 @@ export default {
   }
   .el-card__body .image {
     width: 120px;
+    height: 120px;
   }
 }
 </style>
