@@ -1,0 +1,34 @@
+{
+  "name": "amazon_gift_giver",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
+  },
+  "dependencies": {
+    "@nuxt/content": "^1.3.2",
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/firebase": "^6.1.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "element-ui": "^2.13.2",
+    "firebase": "^7.15.5",
+    "lodash": "^4.17.15",
+    "nuxt": "^2.13.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
+  }
+}
