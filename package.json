@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "nuxt start",
     "export": "nuxt export",
     "serve": "nuxt serve",
     "heroku-postbuild": "npm run build",
