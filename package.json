@@ -22,7 +22,8 @@
     "firebase": "^7.15.5",
     "lodash": "^4.17.15",
     "nuxt": "^2.13.0",
-    "nuxt-mq": "^2.0.1"
+    "nuxt-mq": "^2.0.1",
+    "vue-excel-xlsx": "^1.0.11"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",

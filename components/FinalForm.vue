@@ -8,7 +8,7 @@
       label-width="120px"
       label-position="top"
     >
-      <el-form-item label="Fullname" prop="name">
+      <el-form-item label="Fullname" prop="name" status-icon>
         <el-input v-model="form.name" placeholder="Elon Mask"></el-input>
       </el-form-item>
       <el-form-item label="Email address" prop="email">
@@ -27,7 +27,7 @@
         <el-input
           v-model="form.phone"
           placeholder="+08382229999"
-          @input="checkProgress"
+          @blur="checkProgress"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -49,6 +49,14 @@ export default {
     firstForm: {},
   },
   data() {
+    const validatePhone = (rule, value, callback) => {
+      if (
+        !value.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im)
+      ) {
+        callback(new Error('Phone is wrong formated'))
+      }
+      callback()
+    }
     return {
       form: {
         name: '',
@@ -92,6 +100,7 @@ export default {
             message: 'Please input your Phone!',
             trigger: 'change',
           },
+          { validator: validatePhone, trigger: 'blur' },
         ],
       },
     }
@@ -103,10 +112,12 @@ export default {
   methods: {
     checkProgress() {
       console.log('kek')
-      if (this.form.phone !== '') {
-        this.$emit('endProgress')
+      this.$refs.ruleForm.validate((valid) => {
+        if (valid) {
+          this.$emit('endProgress')
+        }
         console.log('kok')
-      }
+      })
     },
     onSubmit() {
       this.$refs.ruleForm.validate((valid) => {
@@ -124,12 +135,7 @@ export default {
 
           this.$alert('Thank you, NAME!', 'Congratulations!', {
             confirmButtonText: 'OK',
-            callback: (action) => {
-              //   this.$message({
-              //     type: 'info',
-              //     message: `action: ${action}`,
-              //   })
-            },
+            callback: (action) => {},
           })
         } else {
           console.log('error submit!!')

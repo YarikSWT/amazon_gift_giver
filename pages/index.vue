@@ -46,16 +46,19 @@ export default {
       this.step += 1
       this.progress = 33
       this.firstForm = form
+      window.scrollTo(0, 0)
     },
     orderid(orderid) {
       this.step += 1
       this.progress = 75
       this.orderId = orderid
+      window.scrollTo(0, 0)
     },
     gifts(giftId) {
       this.step += 1
       this.progress = 90
       this.giftId = giftId
+      window.scrollTo(0, 0)
     },
     finish() {
       this.step = 0

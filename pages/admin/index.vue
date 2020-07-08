@@ -9,6 +9,16 @@
       <el-table-column prop="state" label="State"> </el-table-column>
       <el-table-column prop="phone" label="Phone"> </el-table-column>
     </el-table>
+    <client-only>
+      <vue-excel-xlsx
+        :data="feeds"
+        :columns="columns"
+        :filename="'filename'"
+        :sheetname="'sheetname'"
+      >
+        Download
+      </vue-excel-xlsx>
+    </client-only>
   </div>
 </template>
 
@@ -31,6 +41,36 @@ export default {
     return {
       feeds: fb.feeds,
       // user_name: fb.name
+    }
+  },
+  data() {
+    return {
+      columns: [
+        {
+          label: 'Time',
+          field: 'time',
+        },
+        {
+          label: 'Name',
+          field: 'name',
+        },
+        {
+          label: 'OrderId',
+          field: 'orderId',
+        },
+        {
+          label: 'Address',
+          field: 'address',
+        },
+        {
+          label: 'State',
+          field: 'state',
+        },
+        {
+          label: 'Phone',
+          field: 'phone',
+        },
+      ],
     }
   },
 }
