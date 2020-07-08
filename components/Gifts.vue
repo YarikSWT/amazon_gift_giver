@@ -134,6 +134,7 @@ export default {
 .image {
   width: 100%;
   display: block;
+  object-fit: contain;
 }
 
 .image.sm {

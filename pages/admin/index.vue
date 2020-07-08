@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="feeds" style="width: 100%;">
+    <el-table :data="feeds" style="width: 100%; margin-bottom: 20px;">
       <el-table-column prop="time" label="Time" width="180"> </el-table-column>
       <el-table-column prop="name" label="Name"> </el-table-column>
       <el-table-column prop="orderId" label="OrderId" width="180">
@@ -19,6 +19,7 @@
         Download
       </vue-excel-xlsx>
     </client-only>
+    <!-- <el-button @click="removeAll">Remove everything</el-button> -->
   </div>
 </template>
 
@@ -72,6 +73,12 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    removeAll() {
+      this.$fireDb.ref('/').child('Feeds').remove()
+      console.log('remove all')
+    },
   },
 }
 </script>
