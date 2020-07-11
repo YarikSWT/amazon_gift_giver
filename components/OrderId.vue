@@ -79,6 +79,7 @@ const url =
   'https://sheets.googleapis.com/v4/spreadsheets/1Y0Rqp81RNf_adLKYQQ_BFPxH53eUBu9F434qU2wM3Ls/values/Orders!A1:D1000?key=AIzaSyAR_9cz7QcQOhmSzAWjS4mW9oggzjje8dU'
 
 export default {
+  name: 'OrderId',
   data() {
     return {
       form: {
@@ -102,11 +103,33 @@ export default {
       console.log('submit!')
       const loadOrders = await this.getTableData()
       const orderId = this.$store.state.inputs.orderId
-      console.log(loadOrders)
       const check = loadOrders.orders.find((el) => {
         return el.OrderId === orderId
       }, orderId)
-      if (!check) {
+      const fb = await this.$fireDb
+        .ref('/Feed')
+        .once('value')
+        .then(async (snapshot) => {
+          let filled = false
+          const bar = await new Promise((resolve, reject) => {
+            let index = 0
+            snapshot.forEach((doc) => {
+              if (
+                doc.val().orderId === orderId &&
+                doc.val().last_filled_step === 5
+              ) {
+                filled = true
+                resolve(filled)
+              }
+              index += 1
+              if (index === snapshot.numChildren()) resolve(filled)
+            })
+          })
+          return {
+            filled: bar,
+          }
+        })
+      if (!check || fb.filled) {
         this.$message.error('Wrong Order Id')
       } else {
         this.$emit('nextStep', orderId)

@@ -65,6 +65,7 @@
 
 <script>
 export default {
+  name: 'FinalForm',
   props: {
     orderId: {},
     firstForm: {},
@@ -255,6 +256,7 @@ export default {
                   city: this.form.city,
                   phone: this.form.phone,
                   time: new Date().getTime(),
+                  last_filled_step: 5,
                 })
               this.$router.push('/thanks')
             })

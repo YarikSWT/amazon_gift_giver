@@ -43,6 +43,7 @@
 
 <script>
 export default {
+  name: 'Revie',
   data() {
     return {
       form: {

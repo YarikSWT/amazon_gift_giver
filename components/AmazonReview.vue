@@ -56,6 +56,7 @@
 
 <script>
 export default {
+  name: 'AmazonReview',
   data() {
     return {
       form: {

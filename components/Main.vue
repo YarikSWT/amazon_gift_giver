@@ -69,6 +69,7 @@
 
 <script>
 export default {
+  name: 'Main',
   data() {
     const validateEmail = (rule, value, callback) => {
       const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
@@ -132,6 +133,7 @@ export default {
             time: new Date().getTime(),
           })
           this.$store.commit('setInput', { field: 'feedKey', data: push.key })
+          this.$nuxt.$emit('setProgress', 31)
           this.$emit('nextStep', this.form)
         } else {
           console.log('error submit!!')

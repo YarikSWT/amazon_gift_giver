@@ -56,6 +56,7 @@ export default {
     orderid(orderid) {
       console.log('o_id', orderid)
       this.updateRecord({ orderId: orderid }, 1)
+      this.$nuxt.$emit('setProgress', 47)
       this.$router.push('/step/2')
       this.progress = 75
       this.orderId = orderid
@@ -63,16 +64,19 @@ export default {
     },
     review(review) {
       console.log('rev', review)
+      this.$nuxt.$emit('setProgress', 65)
       this.updateRecord({ review }, 2)
       this.$router.push('/step/3')
     },
     amazonReview(review) {
       this.updateRecord({}, 3)
+      this.$nuxt.$emit('setProgress', 83)
       this.$router.push('/step/4')
     },
     gifts(giftId) {
       console.log('g_id', giftId)
       this.updateRecord({ giftId }, 4)
+      this.$nuxt.$emit('setProgress', 94)
       this.$router.push('/step/5')
       this.progress = 90
       this.giftId = giftId
@@ -96,7 +100,9 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     if (store().state.inputs.feedKey === '') {
-      next('/')
+      next((vm) => {
+        vm.$router.replace('/')
+      })
     } else next()
   },
 }

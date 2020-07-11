@@ -6,13 +6,27 @@
       <el-progress
         :text-inside="true"
         :stroke-width="26"
-        :percentage="(parseInt($route.params.step) + 1) * 20"
+        :percentage="progress"
       ></el-progress>
     </header>
     <Nuxt />
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      progress: 0,
+    }
+  },
+  created() {
+    this.$nuxt.$on('setProgress', (newValue) => {
+      this.progress = newValue
+    })
+  },
+}
+</script>
 <style>
 header {
   /* width: 60%; */

@@ -35,7 +35,6 @@
         Download
       </vue-excel-xlsx>
     </client-only>
-    <!-- <el-button @click="removeAll">Remove everything</el-button> -->
   </div>
 </template>
 
@@ -68,7 +67,6 @@ export default {
     console.log('get', fb.feeds)
     return {
       feeds: fb.feeds,
-      // user_name: fb.name
     }
   },
   data() {

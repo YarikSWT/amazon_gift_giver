@@ -65,6 +65,7 @@
 
 <script>
 export default {
+  name: 'Gifts',
   data() {
     return {
       dialogVisible: false,
