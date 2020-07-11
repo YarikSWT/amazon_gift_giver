@@ -62,6 +62,13 @@
 <script>
 export default {
   data() {
+    const validateEmail = (rule, value, callback) => {
+      const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+      if (!value.match(re)) {
+        callback(new Error('Email is wrong formated'))
+      }
+      callback()
+    }
     return {
       form: {
         name: '',
@@ -81,6 +88,7 @@ export default {
             message: 'Please input your email!',
             trigger: 'change',
           },
+          { validator: validateEmail, trigger: 'change' },
         ],
       },
     }
