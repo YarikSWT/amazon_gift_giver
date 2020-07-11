@@ -238,20 +238,48 @@ export default {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           console.log('submit!')
-          this.$emit('nextStep')
-          this.$fireDb.ref('/Feed').push({
-            name: this.form.name,
-            orderId: this.$store.state.inputs.orderId,
-            state: this.form.state,
-            address: this.form.address,
-            phone: this.form.phone,
-            time: new Date().getTime(),
-          })
-
-          this.$alert('Thank you, NAME!', 'Congratulations!', {
+          this.$confirm('Are you sure that this info is correct?', 'Warning', {
             confirmButtonText: 'OK',
-            callback: (action) => {},
+            cancelButtonText: 'Cancel',
+            type: 'warning',
           })
+            .then(() => {
+              this.$fireDb.ref('/Feed').push({
+                name: this.form.name,
+                orderId: this.$store.state.inputs.orderId,
+                state: this.form.state,
+                address1: this.form.address1,
+                address2: this.form.address2,
+                phone: this.form.phone,
+                time: new Date().getTime(),
+              })
+              this.$router.push('/thanks')
+            })
+            .catch((error) => {
+              console.log(error)
+              this.$message.error(error)
+            })
+          // this.$confirm('Are you sure that this info is correct?', 'Warning', {
+          //   confirmButtonText: 'OK',
+          //   cancelButtonText: 'Cancel',
+          //   type: 'warning',
+          // })
+          //   .then(() => {
+          //     console.log('YES')
+          //     // this.$emit('nextStep')
+          //     this.$fireDb.ref('/Feed').push({
+          //       name: this.form.name,
+          //       orderId: this.$store.state.inputs.orderId,
+          //       state: this.form.state,
+          //       address: this.form.address,
+          //       phone: this.form.phone,
+          //       time: new Date().getTime(),
+          //     })
+          //     this.$router.push('/thanks')
+          //   })
+          //   .catch(() => {
+          //     console.log('BI')
+          //   })
         } else {
           console.log('error submit!!')
           return false
