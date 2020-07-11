@@ -9,7 +9,7 @@
         label-position="top"
       >
         <el-form-item label="OrderId">
-          <el-input v-model="form.orderId" placeholder="Order ID"></el-input>
+          <el-input v-model="orderId" placeholder="Order ID"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">CHECK</el-button>
@@ -38,11 +38,22 @@ export default {
       },
     }
   },
+  computed: {
+    orderId: {
+      get() {
+        return this.$store.state.inputs.orderId
+      },
+      set(newValue) {
+        this.form.orderId = newValue
+        this.$store.commit('setInput', { field: 'orderId', data: newValue })
+      },
+    },
+  },
   methods: {
     async onSubmit() {
       console.log('submit!')
       const loadOrders = await this.getTableData()
-      const orderId = this.form.orderId
+      const orderId = this.$store.state.inputs.orderId
       console.log(loadOrders)
       const check = loadOrders.orders.find((el) => {
         return el.OrderId === orderId

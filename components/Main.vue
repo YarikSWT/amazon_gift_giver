@@ -38,11 +38,11 @@
               style="width: 100%; margin-top: 30px;"
             >
               <el-form-item prop="name">
-                <el-input v-model="form.name" placeholder="Fullname"></el-input>
+                <el-input v-model="fullname" placeholder="Fullname"></el-input>
               </el-form-item>
               <el-form-item prop="email">
                 <el-input
-                  v-model="form.email"
+                  v-model="email"
                   placeholder="Email Address"
                 ></el-input>
               </el-form-item>
@@ -85,6 +85,26 @@ export default {
       },
     }
   },
+  computed: {
+    fullname: {
+      get() {
+        return this.$store.state.inputs.fullname
+      },
+      set(newValue) {
+        this.form.name = newValue
+        this.$store.commit('setInput', { field: 'fullname', data: newValue })
+      },
+    },
+    email: {
+      get() {
+        return this.$store.state.inputs.email
+      },
+      set(newValue) {
+        this.form.email = newValue
+        this.$store.commit('setInput', { field: 'email', data: newValue })
+      },
+    },
+  },
   methods: {
     onSubmit() {
       this.$refs.ruleForm.validate((valid) => {
@@ -107,13 +127,14 @@ export default {
 }
 
 .main__text {
-  color: white;
+  color: white !important;
 }
 
-.main__text h1 {
+.main__text h2 {
   line-height: 1.2;
   font-size: 48px;
   font-weight: 500;
+  color: white;
 }
 
 .main__text h3 {
@@ -153,9 +174,13 @@ export default {
   color: white;
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 780px) {
   .main__text {
     margin: 60px 0;
+  }
+
+  .main__text h3 {
+    font-size: 18px;
   }
 
   .form {

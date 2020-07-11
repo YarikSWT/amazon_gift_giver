@@ -1,10 +1,24 @@
 <template>
-  <div>
+  <div class="">
+    <!-- {{ $route.path }}
+    {{ $route.path.includes('step') }} -->
+    <header v-if="$route.path.includes('step')" class="container">
+      <el-progress
+        :text-inside="true"
+        :stroke-width="26"
+        :percentage="(parseInt($route.params.step) + 1) * 20"
+      ></el-progress>
+    </header>
     <Nuxt />
   </div>
 </template>
 
 <style>
+header {
+  /* width: 60%; */
+  margin: 2% 0;
+}
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

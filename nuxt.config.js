@@ -56,6 +56,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     { src: '@/plugins/vue-excel-export.js', mode: 'client' },
+    // '@/plugins/silent-box',
   ],
   /*
    ** Auto import components

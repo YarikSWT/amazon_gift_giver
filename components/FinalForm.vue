@@ -9,23 +9,23 @@
       label-position="top"
     >
       <el-form-item label="Fullname" prop="name" status-icon>
-        <el-input v-model="form.name" placeholder="Elon Mask"></el-input>
+        <el-input v-model="fullname" placeholder="Elon Mask"></el-input>
       </el-form-item>
       <el-form-item label="Email address" prop="email">
-        <el-input v-model="form.email" placeholder="elon@mask.com"></el-input>
+        <el-input v-model="email" placeholder="elon@mask.com"></el-input>
       </el-form-item>
       <el-form-item label="State" prop="state">
-        <el-input v-model="form.state" placeholder="California"></el-input>
+        <el-input v-model="state" placeholder="California"></el-input>
       </el-form-item>
       <el-form-item label="Address" prop="address">
         <el-input
-          v-model="form.address"
+          v-model="address"
           placeholder="Cambridge St., 29, 2"
         ></el-input>
       </el-form-item>
       <el-form-item label="Phone for mail service" prop="phone">
         <el-input
-          v-model="form.phone"
+          v-model="phone"
           placeholder="+08382229999"
           @blur="checkProgress"
         ></el-input>
@@ -105,9 +105,56 @@ export default {
       },
     }
   },
+  computed: {
+    fullname: {
+      get() {
+        return this.$store.state.inputs.fullname
+      },
+      set(newValue) {
+        this.form.name = newValue
+        this.$store.commit('setInput', { field: 'fullname', data: newValue })
+      },
+    },
+    email: {
+      get() {
+        return this.$store.state.inputs.email
+      },
+      set(newValue) {
+        this.form.email = newValue
+        this.$store.commit('setInput', { field: 'email', data: newValue })
+      },
+    },
+    address: {
+      get() {
+        return this.$store.state.inputs.address
+      },
+      set(newValue) {
+        this.form.address = newValue
+        this.$store.commit('setInput', { field: 'address', data: newValue })
+      },
+    },
+    state: {
+      get() {
+        return this.$store.state.inputs.state
+      },
+      set(newValue) {
+        this.form.state = newValue
+        this.$store.commit('setInput', { field: 'state', data: newValue })
+      },
+    },
+    phone: {
+      get() {
+        return this.$store.state.inputs.phone
+      },
+      set(newValue) {
+        this.form.phone = newValue
+        this.$store.commit('setInput', { field: 'phone', data: newValue })
+      },
+    },
+  },
   mounted() {
-    this.form.name = this.firstForm.name
-    this.form.email = this.firstForm.email
+    this.form.name = this.$store.state.inputs.fullname
+    this.form.email = this.$store.state.inputs.email
   },
   methods: {
     checkProgress() {
@@ -126,7 +173,7 @@ export default {
           this.$emit('nextStep')
           this.$fireDb.ref('/Feed').push({
             name: this.form.name,
-            orderId: this.orderId,
+            orderId: this.$store.state.inputs.orderId,
             state: this.form.state,
             address: this.form.address,
             phone: this.form.phone,
