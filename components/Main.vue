@@ -182,7 +182,7 @@ export default {
   color: white;
 }
 
-@media (min-width: 320px) and (max-width: 780px) {
+@media (min-width: 320px) and (max-width: 760px) {
   .main__text {
     margin: 60px 0;
   }
