@@ -66,4 +66,58 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+.btn-green {
+  background-color: #56b68b;
+  font-size: 2.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 15px !important;
+  padding: 11px 18px !important;
+  -webkit-box-shadow: 0 4px 0 #487d65 !important;
+  box-shadow: 0 4px 0 #487d65 !important;
+  text-transform: uppercase;
+}
+
+.order-button {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+}
+
+.btn {
+  display: inline-block;
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.el-textarea__inner {
+  min-height: 200px !important;
+  height: 200px !important;
+}
+
+.el-textarea {
+  min-height: 200px !important;
+  height: 200px !important;
+}
 </style>

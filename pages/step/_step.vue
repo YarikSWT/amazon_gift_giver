@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <OrderId v-if="step === 1" @nextStep="orderid"></OrderId>
-    <Gifts v-else-if="step === 2" @nextStep="gifts"></Gifts>
-    <FinalForm
+    <Review v-else-if="step === 2" @nextStep="review"></Review>
+    <AmazonReview
       v-else-if="step === 3"
+      @nextStep="amazonReview"
+    ></AmazonReview>
+    <Gifts v-else-if="step === 4" @nextStep="gifts"></Gifts>
+    <FinalForm
+      v-else-if="step === 5"
       :first-form="firstForm"
       :order-id="orderId"
       @nextStep="finish"
@@ -15,13 +20,15 @@
 <script>
 // import { mapMutations, mapGetters } from 'vuex'
 import OrderId from '~/components/OrderId.vue'
+import Review from '~/components/Review.vue'
+import AmazonReview from '~/components/AmazonReview.vue'
 import Gifts from '~/components/Gifts.vue'
 import FinalForm from '~/components/FinalForm.vue'
 
 import store from '@/store'
 
 export default {
-  components: { OrderId, Gifts, FinalForm },
+  components: { OrderId, Review, AmazonReview, Gifts, FinalForm },
   data() {
     return {
       test: '',
@@ -50,14 +57,20 @@ export default {
       this.orderId = orderid
       window.scrollTo(0, 0)
     },
-    gifts(giftId) {
+    review(review) {
       this.$router.push('/step/3')
+    },
+    amazonReview(review) {
+      this.$router.push('/step/4')
+    },
+    gifts(giftId) {
+      this.$router.push('/step/5')
       this.progress = 90
       this.giftId = giftId
       window.scrollTo(0, 0)
     },
     finish() {
-      this.$router.push('/step/4')
+      this.$router.push('/step/6')
       this.key += 1
       this.firstForm = {}
       this.orderId = ''
