@@ -129,8 +129,12 @@ export default {
             filled: bar,
           }
         })
-      if (!check || fb.filled) {
-        this.$message.error('Wrong Order Id')
+      if (!check) {
+        this.$message.error('Wrong Order ID')
+      } else if (fb.filled) {
+        this.$message.error(
+          'It seems that this Order ID has already claimed a Gift'
+        )
       } else {
         this.$emit('nextStep', orderId)
       }

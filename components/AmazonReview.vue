@@ -46,7 +46,7 @@
             :disabled="review.length === 0"
             @click="onSubmit"
           >
-            Conitnue to choose the gift
+            Continue to choose the gift
           </el-button>
         </div>
       </div>
