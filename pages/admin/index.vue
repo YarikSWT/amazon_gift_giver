@@ -21,7 +21,8 @@
           <el-checkbox
             v-if="scope.row.feed_status !== 'processed'"
             @change="checkBoxInput(scope.row.key)"
-          ></el-checkbox>
+            >processed?</el-checkbox
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -40,37 +41,9 @@
 
 <script>
 export default {
-  async asyncData({ $fireDb }) {
-    const fb = await $fireDb
-      .ref('/Feed')
-      .once('value')
-      .then((snapshot) => {
-        const feeds = []
-        snapshot.forEach((doc) => {
-          const item = doc.val()
-          const time = item.time
-          const date = new Date(time)
-          let dd = date.getDate()
-          if (dd < 10) dd = '0' + dd
-          let mm = date.getMonth() + 1
-          if (mm < 10) mm = '0' + mm
-          const yyyy = date.getFullYear()
-          const hs = date.toLocaleTimeString()
-          item.time = dd + '.' + mm + '.' + yyyy + ' ' + hs
-          item.key = doc.key
-          feeds.push(item)
-        })
-        return {
-          feeds,
-        }
-      })
-    console.log('get', fb.feeds)
-    return {
-      feeds: fb.feeds,
-    }
-  },
   data() {
     return {
+      feeds: [],
       columns: [
         {
           label: 'Time',
@@ -98,6 +71,29 @@ export default {
         },
       ],
     }
+  },
+  mounted() {
+    this.$fireDb.ref('/Feed').on(
+      'value',
+      function (snapshot) {
+        this.feeds = []
+        snapshot.forEach((doc) => {
+          const item = doc.val()
+          const time = item.time
+          const date = new Date(time)
+          let dd = date.getDate()
+          if (dd < 10) dd = '0' + dd
+          let mm = date.getMonth() + 1
+          if (mm < 10) mm = '0' + mm
+          const yyyy = date.getFullYear()
+          const hs = date.toLocaleTimeString()
+          item.time = dd + '.' + mm + '.' + yyyy + ' ' + hs
+          item.key = doc.key
+          this.feeds.push(item)
+        })
+      },
+      this
+    )
   },
   methods: {
     removeAll() {
