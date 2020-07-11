@@ -17,31 +17,49 @@
         label-position="top"
       >
         <el-form-item label="Fullname" prop="name" status-icon>
-          <el-input v-model="fullname" placeholder="Elon Mask"></el-input>
+          <el-input
+            v-model="fullname"
+            placeholder="Elon Mask"
+            @blur="checkProgress"
+          ></el-input>
         </el-form-item>
         <el-form-item label="Email address" prop="email">
-          <el-input v-model="email" placeholder="elon@mask.com"></el-input>
+          <el-input
+            v-model="email"
+            placeholder="elon@mask.com"
+            @blur="checkProgress"
+          ></el-input>
         </el-form-item>
         <el-form-item label="Street Address 1" prop="address1">
           <el-input
             v-model="address1"
             placeholder="Cambridge St., 29, 2"
+            @blur="checkProgress"
           ></el-input>
         </el-form-item>
         <el-form-item label="Street Address 2" prop="address2">
           <el-input
             v-model="address2"
             placeholder="Cambridge St., 29, 2"
+            @blur="checkProgress"
           ></el-input>
         </el-form-item>
         <el-form-item label="City" prop="city">
-          <el-input v-model="city" placeholder="Chicago"></el-input>
+          <el-input
+            v-model="city"
+            placeholder="Chicago"
+            @blur="checkProgress"
+          ></el-input>
         </el-form-item>
         <el-form-item label="Zip" prop="zip">
           <el-input v-model="zip" placeholder="433512"></el-input>
         </el-form-item>
         <el-form-item label="State" prop="state">
-          <el-input v-model="state" placeholder="California"></el-input>
+          <el-input
+            v-model="state"
+            placeholder="California"
+            @blur="checkProgress"
+          ></el-input>
         </el-form-item>
         <el-form-item label="Phone for mail service" prop="phone">
           <el-input
@@ -227,13 +245,17 @@ export default {
   },
   methods: {
     checkProgress() {
-      console.log('kek')
-      this.$refs.ruleForm.validate((valid) => {
-        if (valid) {
-          this.$emit('endProgress')
-        }
-        console.log('kok')
-      })
+      // let flag = true
+      // for (const variable in this.form) {
+      //   if (variable === 'phone') {
+      //     flag = flag && true
+      //   } else if (this.form[variable] !== '') {
+      //     flag = true
+      //   } else flag = false
+      // }
+      // if (flag) {
+      //   this.$nuxt.$emit('setProgress', 100)
+      // }
     },
     onSubmit() {
       this.$refs.ruleForm.validate((valid) => {
