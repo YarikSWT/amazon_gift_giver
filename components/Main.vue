@@ -125,13 +125,19 @@ export default {
     onSubmit() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          const push = this.$fireDb.ref(`/Feed`).push({
+            name: this.fullname,
+            email: this.email,
+            last_filled_step: 0,
+            time: new Date().getTime(),
+          })
+          this.$store.commit('setInput', { field: 'feedKey', data: push.key })
           this.$emit('nextStep', this.form)
         } else {
           console.log('error submit!!')
           return false
         }
       })
-      //   console.log('submit!')
     },
   },
 }

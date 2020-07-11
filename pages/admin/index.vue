@@ -6,7 +6,8 @@
       <el-table-column prop="email" label="Email"> </el-table-column>
       <el-table-column prop="orderId" label="OrderId" width="180">
       </el-table-column>
-      <el-table-column prop="gift" label="Gift" width="180"> </el-table-column>
+      <el-table-column prop="giftId" label="GiftId" width="180">
+      </el-table-column>
       <el-table-column prop="address1" label="Address1"> </el-table-column>
       <el-table-column prop="address2" label="Address2"> </el-table-column>
       <el-table-column prop="state" label="State"> </el-table-column>

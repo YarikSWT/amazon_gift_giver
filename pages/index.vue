@@ -118,6 +118,7 @@
 import Main from '~/components/Main.vue'
 
 export default {
+  name: 'MainPage',
   components: { Main },
   data() {
     return {

@@ -21,6 +21,7 @@ const initStore = () => {
           city: '',
           phone: '',
           state: '',
+          feedKey: '',
         },
       },
       mutations: {

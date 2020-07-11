@@ -244,15 +244,18 @@ export default {
             type: 'warning',
           })
             .then(() => {
-              this.$fireDb.ref('/Feed').push({
-                name: this.form.name,
-                orderId: this.$store.state.inputs.orderId,
-                state: this.form.state,
-                address1: this.form.address1,
-                address2: this.form.address2,
-                phone: this.form.phone,
-                time: new Date().getTime(),
-              })
+              this.$fireDb
+                .ref(`/Feed/${this.$store.state.inputs.feedKey}`)
+                .update({
+                  name: this.form.name,
+                  state: this.form.state,
+                  address1: this.form.address1,
+                  address2: this.form.address2,
+                  zip: this.form.zip,
+                  city: this.form.city,
+                  phone: this.form.phone,
+                  time: new Date().getTime(),
+                })
               this.$router.push('/thanks')
             })
             .catch((error) => {

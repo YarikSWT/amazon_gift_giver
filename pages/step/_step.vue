@@ -18,16 +18,15 @@
 </template>
 
 <script>
-// import { mapMutations, mapGetters } from 'vuex'
 import OrderId from '~/components/OrderId.vue'
 import Review from '~/components/Review.vue'
 import AmazonReview from '~/components/AmazonReview.vue'
 import Gifts from '~/components/Gifts.vue'
 import FinalForm from '~/components/FinalForm.vue'
-
 import store from '@/store'
 
 export default {
+  name: 'Steps',
   components: { OrderId, Review, AmazonReview, Gifts, FinalForm },
   data() {
     return {
@@ -49,21 +48,31 @@ export default {
         this.$store.commit('input', newValue)
       },
     },
+    feedKey() {
+      return this.$store.state.inputs.feedKey
+    },
   },
   methods: {
     orderid(orderid) {
+      console.log('o_id', orderid)
+      this.updateRecord({ orderId: orderid }, 1)
       this.$router.push('/step/2')
       this.progress = 75
       this.orderId = orderid
       window.scrollTo(0, 0)
     },
     review(review) {
+      console.log('rev', review)
+      this.updateRecord({ review }, 2)
       this.$router.push('/step/3')
     },
     amazonReview(review) {
+      this.updateRecord({}, 3)
       this.$router.push('/step/4')
     },
     gifts(giftId) {
+      console.log('g_id', giftId)
+      this.updateRecord({ giftId }, 4)
       this.$router.push('/step/5')
       this.progress = 90
       this.giftId = giftId
@@ -77,20 +86,17 @@ export default {
     },
     endProgress() {
       console.log('the end')
-      //   this.progress = 100
+    },
+    updateRecord(data, step) {
+      this.$fireDb.ref(`/Feed/${this.feedKey}`).update({
+        ...data,
+        last_filled_step: step,
+      })
     },
   },
   beforeRouteEnter(to, from, next) {
-    const step = parseInt(to.params.step)
-    console.log('step', step)
-    // next()
-    // if (step < 1 || step > 4) {
-    //   next('/')
-    // } else next()
-    if (step > 1) {
-      console.log(store().state)
-      if (store().state.inputs.orderId.length === 0) next('/step/1')
-      else next()
+    if (store().state.inputs.feedKey === '') {
+      next('/')
     } else next()
   },
 }
