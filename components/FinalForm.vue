@@ -1,44 +1,65 @@
 <template>
-  <div class="finalForm" :v-if="$mq">
-    <h1>Fill the form</h1>
-    <el-form
-      ref="ruleForm"
-      :rules="rules"
-      :model="form"
-      label-width="120px"
-      label-position="top"
-    >
-      <el-form-item label="Fullname" prop="name" status-icon>
-        <el-input v-model="fullname" placeholder="Elon Mask"></el-input>
-      </el-form-item>
-      <el-form-item label="Email address" prop="email">
-        <el-input v-model="email" placeholder="elon@mask.com"></el-input>
-      </el-form-item>
-      <el-form-item label="State" prop="state">
-        <el-input v-model="state" placeholder="California"></el-input>
-      </el-form-item>
-      <el-form-item label="Address" prop="address">
-        <el-input
-          v-model="address"
-          placeholder="Cambridge St., 29, 2"
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="Phone for mail service" prop="phone">
-        <el-input
-          v-model="phone"
-          placeholder="+08382229999"
-          @blur="checkProgress"
-        ></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          style="margin-top: 30px; width: 100%;"
-          type="success"
-          @click="onSubmit"
-          >GET A GIFT</el-button
-        >
-      </el-form-item>
-    </el-form>
+  <div class="container" :class="$mq">
+    <div class="col-md-8 col-md-offset-2 ml-auto mr-auto">
+      <div class="section-header text-center">
+        <h3 class="bio-heading py-5">
+          Please enter your address details so that we could send you the gift.
+        </h3>
+      </div>
+    </div>
+    <div class="">
+      <el-form
+        ref="ruleForm"
+        :rules="rules"
+        class="rounded pt-4 px-3 pb-2 mx-auto border shadow order-form ruleForm"
+        :model="form"
+        label-width="120px"
+        label-position="top"
+      >
+        <el-form-item label="Fullname" prop="name" status-icon>
+          <el-input v-model="fullname" placeholder="Elon Mask"></el-input>
+        </el-form-item>
+        <el-form-item label="Email address" prop="email">
+          <el-input v-model="email" placeholder="elon@mask.com"></el-input>
+        </el-form-item>
+        <el-form-item label="Street Address 1" prop="address1">
+          <el-input
+            v-model="address1"
+            placeholder="Cambridge St., 29, 2"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="Street Address 2" prop="address2">
+          <el-input
+            v-model="address2"
+            placeholder="Cambridge St., 29, 2"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="City" prop="city">
+          <el-input v-model="city" placeholder="Chicago"></el-input>
+        </el-form-item>
+        <el-form-item label="Zip" prop="zip">
+          <el-input v-model="zip" placeholder="433512"></el-input>
+        </el-form-item>
+        <el-form-item label="State" prop="state">
+          <el-input v-model="state" placeholder="California"></el-input>
+        </el-form-item>
+        <el-form-item label="Phone for mail service" prop="phone">
+          <el-input
+            v-model="phone"
+            placeholder="+08382229999"
+            @blur="checkProgress"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            style="margin-top: 30px; width: 100%;"
+            type="success"
+            @click="onSubmit"
+            >GET A GIFT</el-button
+          >
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
@@ -50,7 +71,10 @@ export default {
   },
   data() {
     const validatePhone = (rule, value, callback) => {
-      if (
+      if (value === '') {
+        callback()
+        return
+      } else if (
         !value.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im)
       ) {
         callback(new Error('Phone is wrong formated'))
@@ -62,7 +86,10 @@ export default {
         name: '',
         email: '',
         state: '',
-        address: '',
+        address1: '',
+        address2: '',
+        city: '',
+        zip: '',
         phone: '',
       },
       rules: {
@@ -87,21 +114,35 @@ export default {
             trigger: 'change',
           },
         ],
-        address: [
+        city: [
+          {
+            required: true,
+            message: 'Please input your City!',
+            trigger: 'change',
+          },
+        ],
+        zip: [
+          {
+            required: true,
+            message: 'Please input your City!',
+            trigger: 'change',
+          },
+        ],
+        address1: [
           {
             required: true,
             message: 'Please input your Address!',
             trigger: 'change',
           },
         ],
-        phone: [
+        address2: [
           {
             required: true,
-            message: 'Please input your Phone!',
+            message: 'Please input your Address!',
             trigger: 'change',
           },
-          { validator: validatePhone, trigger: 'blur' },
         ],
+        phone: [{ validator: validatePhone, trigger: 'change' }],
       },
     }
   },
@@ -124,13 +165,22 @@ export default {
         this.$store.commit('setInput', { field: 'email', data: newValue })
       },
     },
-    address: {
+    address1: {
       get() {
-        return this.$store.state.inputs.address
+        return this.$store.state.inputs.address1
       },
       set(newValue) {
-        this.form.address = newValue
-        this.$store.commit('setInput', { field: 'address', data: newValue })
+        this.form.address1 = newValue
+        this.$store.commit('setInput', { field: 'address1', data: newValue })
+      },
+    },
+    address2: {
+      get() {
+        return this.$store.state.inputs.address2
+      },
+      set(newValue) {
+        this.form.address2 = newValue
+        this.$store.commit('setInput', { field: 'address2', data: newValue })
       },
     },
     state: {
@@ -140,6 +190,24 @@ export default {
       set(newValue) {
         this.form.state = newValue
         this.$store.commit('setInput', { field: 'state', data: newValue })
+      },
+    },
+    city: {
+      get() {
+        return this.$store.state.inputs.city
+      },
+      set(newValue) {
+        this.form.city = newValue
+        this.$store.commit('setInput', { field: 'city', data: newValue })
+      },
+    },
+    zip: {
+      get() {
+        return this.$store.state.inputs.zip
+      },
+      set(newValue) {
+        this.form.zip = newValue
+        this.$store.commit('setInput', { field: 'zip', data: newValue })
       },
     },
     phone: {
@@ -200,11 +268,21 @@ export default {
   padding: 0 !important;
 }
 .finalForm {
-  width: 600px;
+  /* width: 600px; */
 }
 
 .finalForm.sm {
   width: 100%;
   padding: 0 25px;
+}
+
+.ruleForm {
+  width: 60%;
+}
+
+@media (min-width: 320px) and (max-width: 760px) {
+  .ruleForm {
+    width: 100%;
+  }
 }
 </style>

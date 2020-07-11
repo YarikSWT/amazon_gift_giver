@@ -17,18 +17,22 @@
           "
         >
           <div class="main__text">
-            <h2>Thank you for supporting us!</h2>
+            <h1>LET US KNOW WHAT YOU THINK!</h1>
+            <h2>
+              Please tell us you experience with our Products and get a FREE
+              Gift
+            </h2>
             <h3>
-              Share your honest experience about our Product and get a FREE
-              Gift. NO credit card required, NO shipping charges, NO hidden
-              fees.
+              NO Shipping Charges, NO Hidden Fees, NO Credit Card Required!
             </h3>
           </div>
         </el-col>
         <el-col :span="$mq !== 'sm' ? 12 : 24">
           <div class="form">
-            <h4>Fill out the form</h4>
-            <h5 style="font-weight: 200;">to receive a FREE product</h5>
+            <h4>Claim your FREE Gift!</h4>
+            <h5 style="font-weight: 200;">
+              Fill out the form to receive a FREE product.
+            </h5>
             <el-form
               ref="ruleForm"
               :model="form"
@@ -48,8 +52,12 @@
               </el-form-item>
               <el-form-item>
                 <el-button type="success" style="width: 100%;" @click="onSubmit"
-                  >CLAIM A GIFT</el-button
+                  >GET A GIFT</el-button
                 >
+                <p class="mt-3">
+                  * Conditions Apply: Limited to one free gift of each product
+                  per Amazon account and household.
+                </p>
               </el-form-item>
             </el-form>
           </div>
@@ -140,7 +148,7 @@ export default {
 
 .main__text h2 {
   line-height: 1.2;
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 500;
   color: white;
 }
@@ -163,7 +171,7 @@ export default {
   border-radius: 5px;
   padding-top: 40px;
   padding-left: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   border-top-width: 2;
   border-right-width: 2;
   border-bottom-width: 2;
@@ -182,13 +190,21 @@ export default {
   color: white;
 }
 
+.form p {
+  line-height: 1rem;
+}
+
 @media (min-width: 320px) and (max-width: 760px) {
   .main__text {
-    margin: 60px 0;
+    margin: 30px 0;
   }
 
   .main__text h3 {
     font-size: 18px;
+  }
+
+  .main__text h2 {
+    font-size: 20px !important;
   }
 
   .form {

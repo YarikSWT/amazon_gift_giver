@@ -17,7 +17,13 @@
             <span>{{ gift.title }}</span>
             <div class="bottom clearfix">
               <el-button type="" class="button" @click="open(index)"
-                >View</el-button
+                >Quick View</el-button
+              >
+              <el-button
+                type="primary"
+                class="button"
+                @click="checkOut(gifts[index].id)"
+                >Get</el-button
               >
             </div>
           </div>

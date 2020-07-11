@@ -16,7 +16,7 @@
           <div class="col-md-8 col-md-offset-2 ml-auto mr-auto">
             <div class="section-header text-center">
               <h2 class="bio-heading">
-                Get your FREE Bottle, in 3 Simple Steps
+                Get your FREE gift, in 3 Simple Steps
               </h2>
             </div>
           </div>
