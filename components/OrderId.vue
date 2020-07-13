@@ -10,6 +10,7 @@
                   class="border w-100 shadow mb-3 lg:block md:hidden sm:hidden xs:hidden"
                   src="~/assets/img/Order_ID.png"
                   alt=""
+                  @click="getGiftsData"
                 />
                 <div>
                   <h4
@@ -78,6 +79,9 @@ const _ = require('lodash')
 const url =
   'https://sheets.googleapis.com/v4/spreadsheets/1Y0Rqp81RNf_adLKYQQ_BFPxH53eUBu9F434qU2wM3Ls/values/Orders!A1:D1000?key=AIzaSyAR_9cz7QcQOhmSzAWjS4mW9oggzjje8dU'
 
+const giftsUrl =
+  'https://sheets.googleapis.com/v4/spreadsheets/1Y0Rqp81RNf_adLKYQQ_BFPxH53eUBu9F434qU2wM3Ls/values/Gifts!A1:D1000?key=AIzaSyAR_9cz7QcQOhmSzAWjS4mW9oggzjje8dU'
+
 export default {
   name: 'OrderId',
   data() {
@@ -101,10 +105,11 @@ export default {
   methods: {
     async onSubmit() {
       console.log('submit!')
-      const loadOrders = await this.getTableData()
+      const loadOrders = await this.getOrdersData()
+      const loadGifts = await this.getGiftsData()
       const orderId = this.$store.state.inputs.orderId
-      const check = loadOrders.orders.find((el) => {
-        return el.OrderId === orderId
+      const foundOrder = loadOrders.orders.find((el, index, array) => {
+        if (el.OrderId === orderId) return el
       }, orderId)
       const fb = await this.$fireDb
         .ref('/Feed')
@@ -129,17 +134,29 @@ export default {
             filled: bar,
           }
         })
-      if (!check) {
+      if (!foundOrder) {
         this.$message.error('Wrong Order ID')
       } else if (fb.filled) {
         this.$message.error(
           'It seems that this Order ID has already claimed a Gift'
         )
       } else {
+        const giftsIds = foundOrder.Gifts.replace(/[[\]']+/g, '').split(',')
+        // console.log('gifts ids', giftsIds, 'gifts', loadGifts)
+        const gifts = []
+        giftsIds.forEach((el) => {
+          const id = parseInt(el)
+          const item = loadGifts.gifts[id]
+          item.Description = item.Description.replace(/↵/g, '<br/>')
+          console.log(item.Description)
+          gifts.push(item)
+        })
+        this.$store.commit('setGifts', gifts)
+        console.log('final gifts', gifts)
         this.$emit('nextStep', orderId)
       }
     },
-    async getTableData() {
+    async getOrdersData() {
       const response = await this.$axios.get(url)
       const rows = response.data.values
       const properties = rows.shift()
@@ -147,7 +164,19 @@ export default {
       for (const i in rows) {
         orders.push(_.zipObject(properties, rows[i]))
       }
+      console.log('response', orders)
       return { orders }
+    },
+    async getGiftsData() {
+      const response = await this.$axios.get(giftsUrl)
+      const rows = response.data.values
+      const properties = rows.shift()
+      const gifts = []
+      for (const i in rows) {
+        gifts.push(_.zipObject(properties, rows[i]))
+      }
+      console.log('response', gifts)
+      return { gifts }
     },
   },
 }

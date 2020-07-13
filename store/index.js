@@ -12,8 +12,8 @@ const initStore = () => {
       state: {
         inputs: {
           orderId: '',
-          fullname: '',
-          email: '',
+          fullname: 'test',
+          email: 'test@test.ru',
           review: '',
           address1: '',
           address2: '',
@@ -23,6 +23,7 @@ const initStore = () => {
           state: '',
           feedKey: '',
         },
+        gifts: [],
       },
       mutations: {
         input(state, payload) {
@@ -30,6 +31,9 @@ const initStore = () => {
         },
         setInput(state, payload) {
           state.inputs[payload.field] = payload.data
+        },
+        setGifts(state, payload) {
+          state.gifts = payload
         },
       },
     }))
