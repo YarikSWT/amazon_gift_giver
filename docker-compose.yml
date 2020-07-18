@@ -29,7 +29,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/etc/nginx
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
     depends_on:
       - nuxt_brand
       - nuxt_family
