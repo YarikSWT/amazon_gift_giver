@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    volumes:
+      - ./brand.env:/.env
     env_file:
       - brand.env
     command:
@@ -18,6 +20,8 @@ services:
     restart: always
     ports:
       - "3001:3000"
+    volumes:
+      - ./family.env:/.env
     env_file:
       - family.env
     command:
