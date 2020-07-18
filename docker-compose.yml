@@ -3,7 +3,7 @@ version: "3"
 services:
   nuxt_brand:
     build: ./
-    container_name: nuxt
+    container_name: nuxt_brand
     restart: always
     ports:
       - "3000:3000"
@@ -14,7 +14,7 @@ services:
 
   nuxt_family:
     build: ./
-    container_name: nuxt
+    container_name: nuxt_family
     restart: always
     ports:
       - "3000:3000"
