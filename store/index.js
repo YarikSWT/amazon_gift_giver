@@ -22,6 +22,7 @@ const initStore = () => {
           phone: '',
           state: '',
           feedKey: '',
+          reviewLink: '',
         },
         gifts: [],
       },

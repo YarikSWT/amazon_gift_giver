@@ -30,7 +30,11 @@
         </div>
         <div class="col-lg-6 col-mg-6 col-12">
           <div class="amazon_click w-100">
-            <a href="amazon.com" target="_blank" class="btn-amazon">
+            <a
+              :href="$store.state.inputs.reviewLink"
+              target="_blank"
+              class="btn-amazon"
+            >
               Click here to post your review!
             </a>
             <img

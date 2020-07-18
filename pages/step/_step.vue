@@ -53,7 +53,7 @@ export default {
     },
   },
   methods: {
-    orderid(orderid) {
+    orderid(orderid, orderLink) {
       console.log('o_id', orderid)
       this.updateRecord({ orderId: orderid }, 1)
       this.$nuxt.$emit('setProgress', 47)

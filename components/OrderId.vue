@@ -153,7 +153,11 @@ export default {
         })
         this.$store.commit('setGifts', gifts)
         console.log('final gifts', gifts)
-        this.$emit('nextStep', orderId)
+        this.$store.commit('setInput', {
+          field: 'reviewLink',
+          data: foundOrder.ReviewLink,
+        })
+        this.$emit('nextStep', orderId, foundOrder.ReviewLink)
       }
     },
     async getOrdersData() {
