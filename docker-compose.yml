@@ -2,7 +2,10 @@ version: "3"
 
 services:
   nuxt_brand:
-    build: ./
+    build: 
+      context: ./
+      args:
+        WEBSITE_MODE: brand
     container_name: nuxt_brand
     restart: always
     ports:
@@ -11,13 +14,14 @@ services:
       - ./brand.env:/.env
     env_file:
       - brand.env
-    args:
-      - WEBSITE_MODE: brand
     command:
       "npm run start"
 
   nuxt_family:
-    build: ./
+    build: 
+      context: ./
+      args:
+        WEBSITE_MODE: family
     container_name: nuxt_family
     restart: always
     ports:
@@ -26,8 +30,6 @@ services:
       - ./family.env:/.env
     env_file:
       - family.env
-     args:
-      - WEBSITE_MODE: family
     command:
       "npm run start"
 
