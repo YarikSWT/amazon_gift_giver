@@ -135,7 +135,7 @@ export default {
   content: {},
 
   env: {
-    isFamily: true //process.env.WEBSITE === 'family' ? true : false
+    isFamily: process.env.WEBSITE === 'family' ? true : false
   },
   /*
    ** Build configuration
