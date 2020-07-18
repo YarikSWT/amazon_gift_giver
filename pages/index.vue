@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="index faces">
+    <div
+      class="index faces"
+      :style="{
+        backgroundImage: `url(${require(`~/assets/img/bgs/${currentBg}.jpg`)})`,
+      }"
+    >
       <div class="container_main">
         <Main @nextStep="main"></Main>
       </div>
@@ -130,6 +135,7 @@ export default {
         { src: '4.jpg' },
         { src: '5.jpg' },
       ],
+      currentBg: 1,
     }
   },
   methods: {
@@ -140,6 +146,14 @@ export default {
       window.scrollTo(0, 0)
       this.$router.push('/step/1')
     },
+    nextBackgroundImage() {
+      if (this.currentBg === 4) {
+        this.currentBg = 1
+      } else this.currentBg += 1
+    },
+  },
+  created() {
+    this.interval = setInterval(() => this.nextBackgroundImage(), 8000)
   },
 }
 </script>
@@ -168,6 +182,8 @@ h5 {
 
 .faces {
   background-image: url('../assets/img/faces.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container_main {

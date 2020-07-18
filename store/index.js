@@ -12,8 +12,8 @@ const initStore = () => {
       state: {
         inputs: {
           orderId: '',
-          fullname: 'test',
-          email: 'test@test.ru',
+          fullname: '',
+          email: '',
           review: '',
           address1: '',
           address2: '',

@@ -17,14 +17,22 @@
           "
         >
           <div class="main__text">
-            <h1>LET US KNOW WHAT YOU THINK!</h1>
+            <h1>Thank you for supporting our family business!</h1>
             <h2>
-              Please tell us you experience with our Products and get a FREE
-              Gift
+              Your feedback means a lot to me!
             </h2>
-            <h3>
-              NO Shipping Charges, NO Hidden Fees, NO Credit Card Required!
-            </h3>
+            <p>
+              My name is Elizabeth Bishop, a proud owner of a family-run
+              business, which I got from my husband and a mother of 3 sweet
+              kids. I am so grateful to you for being such an amazing customer
+              and supporting us! I would appreciate if you could tell me how was
+              your experience with the product.
+            </p>
+            <p>
+              This won’t take only a minute, but it would make a huge difference
+              to my business - and in return I’d be glad to send you a Free Gift
+              that would remind you of how important your opinion is to us.
+            </p>
           </div>
         </el-col>
         <el-col :span="$mq !== 'sm' ? 12 : 24">
@@ -100,6 +108,7 @@ export default {
           { validator: validateEmail, trigger: 'change' },
         ],
       },
+      currentBg: 1,
     }
   },
   computed: {
@@ -141,6 +150,14 @@ export default {
         }
       })
     },
+    nextBackgroundImage() {
+      if (this.currentBg === 4) {
+        this.currentBg = 1
+      } else this.currentBg += 1
+    },
+  },
+  created() {
+    this.interval = setInterval(() => this.nextBackgroundImage(), 5000)
   },
 }
 </script>
