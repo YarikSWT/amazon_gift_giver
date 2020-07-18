@@ -1,14 +1,25 @@
 version: "3"
 
 services:
-  nuxt:
+  nuxt_brand:
     build: ./
     container_name: nuxt
     restart: always
     ports:
       - "3000:3000"
-    volumes:
-     - ./app/lang/jsons:/src/lang/jsons
+    environment:
+      - WEBSITE=brand
+    command:
+      "npm run start"
+
+  nuxt_family:
+    build: ./
+    container_name: nuxt
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - WEBSITE=family
     command:
       "npm run start"
 

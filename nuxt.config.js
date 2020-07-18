@@ -69,6 +69,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv',
   ],
   /*
    ** Nuxt.js modules
@@ -132,6 +133,10 @@ export default {
    ** See https://content.nuxtjs.org/configuration
    */
   content: {},
+
+  env: {
+    isFamily: true //process.env.WEBSITE === 'family' ? true : false
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

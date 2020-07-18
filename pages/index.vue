@@ -153,7 +153,11 @@ export default {
     },
   },
   created() {
-    this.interval = setInterval(() => this.nextBackgroundImage(), 8000)
+    if (!process.env.isFamily) {
+      this.currentBg = 'faces'
+    } else {
+      this.interval = setInterval(() => this.nextBackgroundImage(), 6000)
+    }
   },
 }
 </script>

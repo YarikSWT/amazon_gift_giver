@@ -16,7 +16,7 @@
             flex-direction: column;
           "
         >
-          <div class="main__text">
+          <div class="main__text" v-if="isFamilyWebsite">
             <h1>Thank you for supporting our family business!</h1>
             <h2>
               Your feedback means a lot to me!
@@ -33,6 +33,16 @@
               to my business - and in return I’d be glad to send you a Free Gift
               that would remind you of how important your opinion is to us.
             </p>
+          </div>
+          <div class="main__text" v-else>
+            <h1>LET US KNOW WHAT YOU THINK!</h1>
+            <h2>
+              Please tell us you experience with our Products and get a FREE
+              Gift
+            </h2>
+            <h3>
+              NO Shipping Charges, NO Hidden Fees, NO Credit Card Required!
+            </h3>
           </div>
         </el-col>
         <el-col :span="$mq !== 'sm' ? 12 : 24">
@@ -129,6 +139,9 @@ export default {
         this.form.email = newValue
         this.$store.commit('setInput', { field: 'email', data: newValue })
       },
+    },
+    isFamilyWebsite() {
+      return process.env.isFamily
     },
   },
   methods: {
