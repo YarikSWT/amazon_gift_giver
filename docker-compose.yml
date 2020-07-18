@@ -31,4 +31,5 @@ services:
     volumes:
       - ./nginx:/etc/nginx
     depends_on:
-      - nuxt
+      - nuxt_brand
+      - nuxt_family
