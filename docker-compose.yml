@@ -40,7 +40,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+      # - ./nginx/sites-enabled:/etc/nginx/sites-enabled
     depends_on:
       - nuxt_brand
       - nuxt_family
