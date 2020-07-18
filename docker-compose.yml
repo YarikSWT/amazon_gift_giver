@@ -7,8 +7,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    environment:
-      - WEBSITE=brand
+    env_file:
+      - brand.env
     command:
       "npm run start"
 
@@ -18,8 +18,8 @@ services:
     restart: always
     ports:
       - "3001:3000"
-    environment:
-      - WEBSITE=family
+    env_file:
+      - family.env
     command:
       "npm run start"
 
@@ -30,7 +30,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./nginx/sites-enabled:/etc/nginx/site-enabled
     depends_on:
       - nuxt_brand
       - nuxt_family
