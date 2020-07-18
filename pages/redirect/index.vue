@@ -13,8 +13,9 @@ export default {
       'phone',
       this.getQueryVariable('phone', this.$route.query.whatsup)
     )
+    // https://amazon-gifter.herokuapp.com/?whatsup=phone=79191646801&text=Здравствуйте,%20Подскажите%20цену%20цветов
     window.location.href =
-      'https://api.whatsapp.com/send?' + this.$route.query.whatsup // phone=79191646801&text=Здравствуйте,%20Подскажите%20цену%20цветов'
+      'https://api.whatsapp.com/send?' + this.$route.query.whatsup // phone=79191646801&text=Здравствуйте,%20Подскажите%20цену%20цветов
   },
   methods: {
     getQueryVariable(variable, query) {
