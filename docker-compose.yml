@@ -11,6 +11,8 @@ services:
       - ./brand.env:/.env
     env_file:
       - brand.env
+    args:
+      - WEBSITE_MODE: brand
     command:
       "npm run start"
 
@@ -24,6 +26,8 @@ services:
       - ./family.env:/.env
     env_file:
       - family.env
+     args:
+      - WEBSITE_MODE: family
     command:
       "npm run start"
 
