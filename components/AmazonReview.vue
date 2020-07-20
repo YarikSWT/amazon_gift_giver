@@ -29,7 +29,7 @@
           </el-input>
         </div>
         <div class="col-lg-6 col-mg-6 col-12">
-          <div class="amazon_click w-100">
+          <div class="amazon_click pt-0 pt-lg-3 pt-mt-3 w-100">
             <a
               :href="$store.state.inputs.reviewLink"
               target="_blank"
@@ -113,6 +113,7 @@ p {
   color: #fff !important;
   text-decoration: none;
   font-family: Arial;
+  position: relative;
   font-size: 90%;
   font-weight: bold;
   text-align: center;

@@ -16,23 +16,39 @@
             flex-direction: column;
           "
         >
-          <div class="main__text" v-if="isFamilyWebsite">
+          <div class="main__text family" v-if="isFamilyWebsite">
             <h1>Thank you for supporting our family business!</h1>
             <h2>
               Your feedback means a lot to me!
             </h2>
-            <p>
-              My name is Elizabeth Bishop, a proud owner of a family-run
-              business, which I got from my husband and a mother of 3 sweet
-              kids. I am so grateful to you for being such an amazing customer
-              and supporting us! I would appreciate if you could tell me how was
-              your experience with the product.
-            </p>
-            <p>
-              This won’t take only a minute, but it would make a huge difference
-              to my business - and in return I’d be glad to send you a Free Gift
-              that would remind you of how important your opinion is to us.
-            </p>
+            <transition>
+              <template v-if="seeMore">
+                <div>
+                  <p>
+                    My name is Elizabeth Bishop, a proud owner of a family-run
+                    business, which I got from my husband and a mother of 3
+                    sweet kids. I am so grateful to you for being such an
+                    amazing customer and supporting us! I would appreciate if
+                    you could tell me how was your experience with the product.
+                  </p>
+                  <p>
+                    This won’t take only a minute, but it would make a huge
+                    difference to my business - and in return I’d be glad to
+                    send you a Free Gift that would remind you of how important
+                    your opinion is to us.
+                  </p>
+                  <img class="w-100 mb-2" src="~/assets/img/bgs/1.jpg" alt="" />
+                  <a href="" @click.prevent="seeMore = false">Hide</a>
+                </div>
+              </template>
+              <template v-else>
+                <p>
+                  My name is Elizabeth Bishop, a proud owner of a family-run
+                  business...
+                  <a href="" @click.prevent="seeMore = true">See more</a>
+                </p>
+              </template>
+            </transition>
           </div>
           <div class="main__text" v-else>
             <h1>LET US KNOW WHAT YOU THINK!</h1>
@@ -119,6 +135,7 @@ export default {
         ],
       },
       currentBg: 1,
+      seeMore: false,
     }
   },
   computed: {
@@ -163,14 +180,6 @@ export default {
         }
       })
     },
-    nextBackgroundImage() {
-      if (this.currentBg === 4) {
-        this.currentBg = 1
-      } else this.currentBg += 1
-    },
-  },
-  created() {
-    this.interval = setInterval(() => this.nextBackgroundImage(), 5000)
   },
 }
 </script>
@@ -182,6 +191,12 @@ export default {
 
 .main__text {
   color: white !important;
+}
+
+.main__text.family {
+  background-color: rgba(140, 136, 136, 0.45);
+  padding: 40px 40px 10px;
+  border-radius: 5px;
 }
 
 .main__text h2 {
@@ -248,6 +263,10 @@ export default {
   .form {
     margin-right: 0;
     width: 100%;
+  }
+
+  .main__text.family {
+    padding: 10px;
   }
 }
 </style>

@@ -77,7 +77,7 @@ const _ = require('lodash')
 //  your spreadsheet has to be PUBLIC and SHARED with everybody to be accessed this way
 //  https://sheets.googleapis.com/v4/spreadsheets/{SPREASHEET_ID}/values/{SHEET_TAB_NAME}!{CELLS}?key={GOOGLE_API_KEY}
 const url =
-  'https://sheets.googleapis.com/v4/spreadsheets/1Y0Rqp81RNf_adLKYQQ_BFPxH53eUBu9F434qU2wM3Ls/values/Orders!A1:D1000?key=AIzaSyAR_9cz7QcQOhmSzAWjS4mW9oggzjje8dU'
+  'https://sheets.googleapis.com/v4/spreadsheets/1Y0Rqp81RNf_adLKYQQ_BFPxH53eUBu9F434qU2wM3Ls/values/Orders!A1:G1000?key=AIzaSyAR_9cz7QcQOhmSzAWjS4mW9oggzjje8dU'
 
 const giftsUrl =
   'https://sheets.googleapis.com/v4/spreadsheets/1Y0Rqp81RNf_adLKYQQ_BFPxH53eUBu9F434qU2wM3Ls/values/Gifts!A1:D1000?key=AIzaSyAR_9cz7QcQOhmSzAWjS4mW9oggzjje8dU'
@@ -109,7 +109,7 @@ export default {
       const loadGifts = await this.getGiftsData()
       const orderId = this.$store.state.inputs.orderId
       const foundOrder = loadOrders.orders.find((el, index, array) => {
-        if (el.OrderId === orderId) return el
+        if (el['Order ID'] === orderId) return el
       }, orderId)
       const fb = await this.$fireDb
         .ref('/Feed')
@@ -141,6 +141,7 @@ export default {
           'It seems that this Order ID has already claimed a Gift'
         )
       } else {
+        console.log('resplace', foundOrder)
         const giftsIds = foundOrder.Gifts.replace(/[[\]']+/g, '').split(',')
         // console.log('gifts ids', giftsIds, 'gifts', loadGifts)
         const gifts = []
@@ -155,9 +156,9 @@ export default {
         console.log('final gifts', gifts)
         this.$store.commit('setInput', {
           field: 'reviewLink',
-          data: foundOrder.ReviewLink,
+          data: foundOrder['Review Link'],
         })
-        this.$emit('nextStep', orderId, foundOrder.ReviewLink)
+        this.$emit('nextStep', orderId, foundOrder['Review Link'])
       }
     },
     async getOrdersData() {

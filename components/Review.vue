@@ -1,8 +1,15 @@
 <template>
   <section name="review">
     <div class="container">
-      <div class="content text-center my-5 thanks">
-        <h1 class="font-weight-bolder">We’d love your Feedback...</h1>
+      <div class="content">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 col-lg-4">
+            <img src="~/assets/img/FEEDBACK.png" alt="" class="w-100" />
+          </div>
+        </div>
+      </div>
+      <div class="content text-center my-3 thanks">
+        <h1 class="font-weight-bolder mt-0">We’d love your Feedback...</h1>
         <p>
           We’d love to know how was your experience with our Product, please
           share it with us.

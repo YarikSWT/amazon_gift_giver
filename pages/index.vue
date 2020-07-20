@@ -135,7 +135,7 @@ export default {
         { src: '4.jpg' },
         { src: '5.jpg' },
       ],
-      currentBg: 1,
+      currentBg: 0,
     }
   },
   methods: {
@@ -155,8 +155,6 @@ export default {
   created() {
     if (!process.env.isFamily) {
       this.currentBg = 'faces'
-    } else {
-      this.interval = setInterval(() => this.nextBackgroundImage(), 6000)
     }
   },
 }

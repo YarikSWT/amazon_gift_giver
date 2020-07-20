@@ -13,7 +13,7 @@
           <div style="padding: 14px;">
             <p style="height: 50px;">{{ gift.Title }}</p>
             <div class="bottom clearfix">
-              <el-button type="" class="button" @click="open(index)"
+              <el-button type="" class="button quick" @click="open(index)"
                 >Quick View</el-button
               >
               <el-button
@@ -142,11 +142,23 @@ export default {
 @media (min-width: 320px) and (max-width: 480px) {
   .el-card__body {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
   .el-card__body .image {
     width: 120px;
     height: 120px;
+  }
+  .bottom {
+    text-align: center;
+  }
+
+  .bottom .el-button {
+    margin-left: 0 !important;
+  }
+
+  .bottom .quick {
+    margin-bottom: 5px;
   }
 }
 </style>
